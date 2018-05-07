@@ -10,7 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.du.keepsmiling.home.MainHomeActivity;
+import com.du.keepsmiling.activity.home.MainHomeActivity;
 import com.du.logger.Logger;
 
 public class MainActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package com.du.keepsmiling.home;
+package com.du.keepsmiling.fragment.tabhome;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

@@ -1,9 +1,11 @@
-package com.du.keepsmiling.home;
+package com.du.keepsmiling.activity.home;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import com.du.keepsmiling.R;
+import com.du.keepsmiling.fragment.tabhome.ImageFragment;
+import com.du.keepsmiling.fragment.tabhome.JokesFragment;
 
 import app.demo.widget.adaptablebottomnavigation.adapter.FragmentStateAdapter;
 
@@ -21,7 +23,7 @@ public class ViewSwapperAdapter extends FragmentStateAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case INDEX_BUFFER:
-                return ImageFragment.newInstance(R.mipmap.icon_my_center);
+                return JokesFragment.newInstance(R.mipmap.icon_my_center);
             case INDEX_RETREAT:
                 return ImageFragment.newInstance(R.mipmap.icon_video);
             case INDEX_VALUES:

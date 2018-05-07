@@ -1,4 +1,4 @@
-package com.du.keepsmiling.home;
+package com.du.keepsmiling.activity.home;
 
 import android.os.Bundle;
 

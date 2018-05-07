@@ -2,7 +2,7 @@
     <string name="app_name">KeepSmiling</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_one">One</string>
-    <string name="menu_two">Two</string>
-    <string name="menu_three">Three</string>
+    <string name="menu_one">笑话大全</string>
+    <string name="menu_two">搞笑视频</string>
+    <string name="menu_three">个人中心</string>
 </resources>
