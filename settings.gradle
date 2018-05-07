@@ -1,1 +1,1 @@
-include ':app', ':widget', 'logutil'
+include ':app', ':widget', ':rxnet', 'logutil'

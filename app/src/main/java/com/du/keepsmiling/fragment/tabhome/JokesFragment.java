@@ -16,6 +16,8 @@ public class JokesFragment extends BaseFragment {
     private static String ARG_IMAGE_RESOURCE = "ARG_IMAGE_RESOURCE";
     private int imageRes;
 
+    private JokesPresenter mPresenter;
+
     public static JokesFragment newInstance(int imageRes) {
         JokesFragment imageFragment = new JokesFragment();
         Bundle bundle = new Bundle();
@@ -28,6 +30,8 @@ public class JokesFragment extends BaseFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         imageRes = getArguments().getInt(ARG_IMAGE_RESOURCE);
+
+        mPresenter = new JokesPresenter();
     }
 
     @Nullable
@@ -38,7 +42,7 @@ public class JokesFragment extends BaseFragment {
 
         ImageView iconImage = (ImageView) fragmentView.findViewById(R.id.image_icon);
         iconImage.setImageResource(imageRes);
-
+        mPresenter.reqData();
         return fragmentView;
     }
 }
