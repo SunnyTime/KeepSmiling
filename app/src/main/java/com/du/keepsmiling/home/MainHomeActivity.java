@@ -8,6 +8,8 @@ import com.du.keepsmiling.base.BaseActivity;
 import app.demo.widget.adaptablebottomnavigation.view.AdaptableBottomNavigationView;
 import app.demo.widget.adaptablebottomnavigation.view.ViewSwapper;
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * ClassName: annerViewLayout
@@ -20,20 +22,28 @@ import butterknife.BindView;
  */
 public class MainHomeActivity extends BaseActivity {
     @BindView(R.id.view_swapper)
-    ViewSwapper content;
+    ViewSwapper viewSwapper;
     @BindView(R.id.view_bottom_navigation)
     AdaptableBottomNavigationView bottomNavigationView;
 
     private ViewSwapperAdapter viewSwapperAdapter;
-    private ViewSwapper viewSwapper;
+
+    private Unbinder mUnbinder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mian_home);
+        mUnbinder = ButterKnife.bind(this);
 
         viewSwapperAdapter = new ViewSwapperAdapter(getSupportFragmentManager());
         viewSwapper.setAdapter(viewSwapperAdapter);
         bottomNavigationView.setupWithViewSwapper(viewSwapper);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mUnbinder.unbind();
     }
 }
