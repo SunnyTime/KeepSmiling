@@ -1,3 +1,37 @@
 <resources>
+    <!--============================dimen的统一规范
+   命名规范，
+   字号：text_值sp，
+   强调性的数字字体：text_num_值sp
+   边距：space_值dp
+   高度：height_值dp
+   宽度：width_值dp,
+   ============================================-->
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="height_0.5dp">0.5dp</dimen>
+
+    <dimen name="space_1dp">1dp</dimen>
+
+    <dimen name="space_5dp">5dp</dimen>
+
+    <dimen name="space_8dp">8dp</dimen>
+
+    <dimen name="space_10dp">10dp</dimen>
+
+    <dimen name="space_15dp">15dp</dimen>
+
+    <dimen name="space_20dp">20dp</dimen>
+
+    <dimen name="space_50dp">50dp</dimen>
+
+
+    <!--===字体================================-->
+    <dimen name="text_15sp">15sp</dimen>
+    <!--导航栏标题、重要信息-->
+    <dimen name="text_18sp">18sp</dimen>
+
+    <dimen name="text_20sp">20sp</dimen>
+
+    <dimen name="text_25sp">25sp</dimen>
 </resources>

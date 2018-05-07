@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--========================
+colors的统一规范：
+color_作用_色值： color_text_19191E, 文字色彩色值是19191。
+如果有透明度需要加上透明度值，color_text_19191E_P50, 文字色彩色值是19191,透明度为50%。
+===============================-->
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="white_P40">#64FFFFFF</color>
+
+    //=========================================
+    <color name ="color_0A8F08">#0A8f08</color>
+
+    <color name ="color_7CB342">#7CB342</color>
+
+    <color name ="color_C0CA33">#C0CA33</color>
+
+    <!--背景色-->
+    <color name="color_background_F5F5F5">#F5F5F5</color>
+
+    <color name="color_white">#ffffff</color>
+
+    <color name="color_text_19191E">#19191E</color>
+
+    <color name="color_text_96969B">#96969B</color>
+
+    <!--分割线颜色-->
+    <color name="color_divide_DCDCDC">#DCDCDC</color>
 </resources>
