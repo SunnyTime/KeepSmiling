@@ -1,4 +1,6 @@
-package com.du.keepsmiling.fragment.tabhome;
+package com.du.keepsmiling.fragment.tabhome.jokes;
+
+import com.du.keepsmiling.bean.JokesRecycleBean;
 
 /**
  * ClassName: annerViewLayout
@@ -14,7 +16,7 @@ public interface JokesContract {
         /**
          * 下发的数据
          */
-        void rtnData();
+        void rtnData(JokesRecycleBean bean);
     }
 
     interface Presenter {

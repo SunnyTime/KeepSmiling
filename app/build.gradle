@@ -43,6 +43,7 @@ dependencies {
     implementation('cn.bmob.android:bmob-sdk:3.5.5') {
         exclude module: 'rxjava'
     }
+    implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation project(path: ':widget')
     implementation project(path: ':logutil')
     implementation files('libs/showapi_sdk.jar')

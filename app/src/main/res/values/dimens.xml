@@ -6,6 +6,7 @@
    边距：space_值dp
    高度：height_值dp
    宽度：width_值dp,
+   宽高一样：l_值dp
    ============================================-->
     <dimen name="fab_margin">16dp</dimen>
 
@@ -25,8 +26,14 @@
 
     <dimen name="space_50dp">50dp</dimen>
 
+    <dimen name="l_25dp">25dp</dimen>
+
+    <dimen name="l_15dp">15dp</dimen>
+
 
     <!--===字体================================-->
+    <dimen name="text_12sp">12sp</dimen>
+
     <dimen name="text_15sp">15sp</dimen>
     <!--导航栏标题、重要信息-->
     <dimen name="text_18sp">18sp</dimen>

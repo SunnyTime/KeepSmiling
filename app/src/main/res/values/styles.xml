@@ -17,6 +17,36 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="layout_wrap_content">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="layout_match_content">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="layout_match_wrap">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="style_text_normal_content" parent="layout_match_wrap">
+        <item name="android:textSize">@dimen/text_15sp</item>
+        <item name="android:textColor">@color/color_text_19191E</item>
+    </style>
+
+    <style name="style_text_flag" parent="layout_wrap_content">
+        <item name="android:textSize">@dimen/text_12sp</item>
+        <item name="android:textColor">@color/color_text_96969B</item>
+    </style>
+
+    <style name="style_text_normal_content_ww" parent="layout_wrap_content">
+        <item name="android:textSize">@dimen/text_15sp</item>
+        <item name="android:textColor">@color/color_text_19191E</item>
+    </style>
+
     <!--分割线样式-->
     <style name="style_divider">
         <item name="android:layout_width">match_parent</item>

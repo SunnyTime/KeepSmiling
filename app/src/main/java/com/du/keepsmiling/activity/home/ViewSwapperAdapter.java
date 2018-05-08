@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 
 import com.du.keepsmiling.R;
 import com.du.keepsmiling.fragment.tabhome.ImageFragment;
-import com.du.keepsmiling.fragment.tabhome.JokesFragment;
+import com.du.keepsmiling.fragment.tabhome.jokes.JokesFragment;
 
 import app.demo.widget.adaptablebottomnavigation.adapter.FragmentStateAdapter;
 

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_white"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/space_20dp">
+
+    <RelativeLayout
+        android:id="@+id/layout_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/view_image"
+            android:layout_width="@dimen/l_25dp"
+            android:layout_height="@dimen/l_25dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/view_name"
+            style="@style/style_text_normal_content_ww"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/space_10dp"
+            android:layout_toRightOf="@+id/view_image"
+            android:text="@string/app_name" />
+
+        <TextView
+            android:id="@+id/view_time"
+            style="@style/style_text_flag"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="@string/app_name" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/view_content"
+        style="@style/style_text_normal_content"
+        android:layout_below="@+id/layout_1"
+        android:layout_marginTop="@dimen/space_15dp"
+        android:text="@string/app_name" />
+
+    <LinearLayout
+        android:id="@+id/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view_content"
+        android:layout_marginTop="@dimen/space_15dp">
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/view_love"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/selector_jokes_love"
+            android:checked="true"
+            android:padding="5dp"
+            android:text="@string/app_number"
+            android:textColor="@color/color_text_96969B"
+            android:textSize="12sp"
+            app:backgroundTint="@color/white" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/view_hate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space_20dp"
+            android:button="@drawable/selector_jokes_love"
+            android:checked="true"
+            android:padding="5dp"
+            android:text="@string/app_number"
+            android:textColor="@color/color_text_96969B"
+            android:textSize="12sp"
+            app:backgroundTint="@color/white" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/view_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space_20dp"
+            android:button="@drawable/selector_jokes_love"
+            android:checked="true"
+            android:padding="5dp"
+            android:text="@string/app_number"
+            android:textColor="@color/color_text_96969B"
+            android:textSize="12sp"
+            app:backgroundTint="@color/white" />
+    </LinearLayout>
+
+    <View
+        style="@style/style_divider"
+        android:layout_below="@+id/layout_bottom"
+        android:layout_marginTop="@dimen/space_15dp" />
+</RelativeLayout>

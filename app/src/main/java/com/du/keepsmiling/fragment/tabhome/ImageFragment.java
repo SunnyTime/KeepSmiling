@@ -10,11 +10,19 @@ import android.widget.ImageView;
 
 import com.du.keepsmiling.R;
 
+import app.demo.widget.adaptablebottomnavigation.view.ViewSwapper;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 
 public class ImageFragment extends Fragment {
+    @BindView(R.id.layout_refresh)
+    ViewSwapper viewSwapper;
 
     private static String ARG_IMAGE_RESOURCE = "ARG_IMAGE_RESOURCE";
     private int imageRes;
+    private Unbinder mUnbinder;
 
     public static ImageFragment newInstance(int imageRes) {
         ImageFragment imageFragment = new ImageFragment();
@@ -28,6 +36,7 @@ public class ImageFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         imageRes = getArguments().getInt(ARG_IMAGE_RESOURCE);
+        mUnbinder = ButterKnife.bind(getActivity());
     }
 
     @Nullable

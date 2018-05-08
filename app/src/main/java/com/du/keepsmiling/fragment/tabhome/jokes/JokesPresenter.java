@@ -1,6 +1,9 @@
-package com.du.keepsmiling.fragment.tabhome;
+package com.du.keepsmiling.fragment.tabhome.jokes;
 
+import com.du.keepsmiling.base.BaseBean;
 import com.du.keepsmiling.base.BasePresenter;
+import com.du.keepsmiling.bean.JokesRecycleBean;
+import com.du.keepsmiling.utils.GsonUtil;
 import com.du.logger.Logger;
 import com.show.api.ShowApiRequest;
 
@@ -21,10 +24,16 @@ import rx.schedulers.Schedulers;
 public class JokesPresenter extends BasePresenter implements JokesContract.Presenter {
     private String TAG = "JokesPresenter";
 
+    private JokesContract.View view;
+
+    public JokesPresenter(JokesContract.View view) {
+        this.view = view;
+    }
+
     @Override
     public void reqData() {
         //创建一个被观察者(发布者)
-        Observable observable = Observable.create(new Observable.OnSubscribe<String>() {
+        Observable<String> observable = Observable.create(new Observable.OnSubscribe<String>() {
             @Override
             public void call(Subscriber<? super String> subscriber) {
 
@@ -54,11 +63,15 @@ public class JokesPresenter extends BasePresenter implements JokesContract.Prese
 
             @Override
             public void onNext(String str) {
+                BaseBean bean = GsonUtil.fromJson(str, BaseBean.class);
+                if("0".equals(bean.getShowapi_res_code())) {
+                    String data = GsonUtil.fromJsonString(str,"showapi_res_body");
+                    view.rtnData(GsonUtil.fromJson(data,JokesRecycleBean.class));
+                }
                 Logger.t(TAG).e( "onNext.. integer:" + str);
             }
         };
 
-        //注册观察者(这个方法名看起来有点怪，还不如写成regisiterSubscriber(..)或者干脆addSubscriber(..))
         //注册后就会开始调用call()中的观察者执行的方法 onNext() onCompleted()等
         //设置观察者和发布者代码所要运行的线程后注册观察者
         observable.subscribeOn(Schedulers.newThread())//在当前线程执行subscribe()方法
