@@ -25,15 +25,4 @@
     <color name="black_overlay">#66000000</color>
 
     <color name="mainbg">#CCCCCC</color>
-
-
-    <!--文本提示文字-->
-    <color name="text_hint_division">#a3a3a3</color>
-    <!--分割线颜色-->
-    <color name="division_color">#e0e0e0</color>
-
-    <color name="Orange">#e75946</color>
-    <color name="Yellow">#f4d227</color>
-    <color name="Blue">#4674e7</color>
-    <color name="Green">#0ba62c</color>ids.xml
 </resources>
