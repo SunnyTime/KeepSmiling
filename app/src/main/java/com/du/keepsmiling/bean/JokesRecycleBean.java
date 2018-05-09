@@ -95,6 +95,8 @@ public class JokesRecycleBean extends BaseBean {
         String voicelength;
         String name;
         String create_time;
+        String _id;
+        String video_uri;
 
         public String getText() {
             return text;
@@ -214,6 +216,22 @@ public class JokesRecycleBean extends BaseBean {
 
         public void setCreate_time(String create_time) {
             this.create_time = create_time;
+        }
+
+        public String get_id() {
+            return _id;
+        }
+
+        public void set_id(String _id) {
+            this._id = _id;
+        }
+
+        public String getVideo_uri() {
+            return video_uri;
+        }
+
+        public void setVideo_uri(String video_uri) {
+            this.video_uri = video_uri;
         }
     }
 }

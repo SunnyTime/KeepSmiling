@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import com.du.keepsmiling.R;
 import com.du.keepsmiling.fragment.tabhome.ImageFragment;
 import com.du.keepsmiling.fragment.tabhome.jokes.JokesFragment;
+import com.du.keepsmiling.fragment.tabhome.videos.VideosFragment;
 
 import app.demo.widget.adaptablebottomnavigation.adapter.FragmentStateAdapter;
 
@@ -25,7 +26,7 @@ public class ViewSwapperAdapter extends FragmentStateAdapter {
             case INDEX_BUFFER:
                 return JokesFragment.newInstance(R.mipmap.icon_my_center);
             case INDEX_RETREAT:
-                return ImageFragment.newInstance(R.mipmap.icon_video);
+                return VideosFragment.newInstance(R.mipmap.icon_video);
             case INDEX_VALUES:
                 return ImageFragment.newInstance(R.mipmap.icon_jokes);
         }

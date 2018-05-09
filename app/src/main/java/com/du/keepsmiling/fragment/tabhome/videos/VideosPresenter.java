@@ -1,4 +1,4 @@
-package com.du.keepsmiling.fragment.tabhome.jokes;
+package com.du.keepsmiling.fragment.tabhome.videos;
 
 import com.du.keepsmiling.base.BaseBean;
 import com.du.keepsmiling.base.BasePresenter;
@@ -21,12 +21,12 @@ import rx.schedulers.Schedulers;
  * Copyright (c) 2017, www.leadfund.com.cn All Rights Reserved.
  * 上海利得金融科技集团版权所有.
  */
-public class JokesPresenter extends BasePresenter implements JokesContract.Presenter {
+public class VideosPresenter extends BasePresenter implements VideosContract.Presenter {
     private String TAG = "JokesPresenter";
 
-    private JokesContract.View view;
+    private VideosContract.View view;
 
-    public JokesPresenter(JokesContract.View view) {
+    public VideosPresenter(VideosContract.View view) {
         this.view = view;
     }
 
@@ -37,7 +37,7 @@ public class JokesPresenter extends BasePresenter implements JokesContract.Prese
             @Override
             public void call(Subscriber<? super String> subscriber) {
                 String res=new ShowApiRequest( "http://route.showapi.com/255-1", appid, secret)
-                        .addTextPara("type", "29")
+                        .addTextPara("type", "41")
                         .addTextPara("title", keyWords)
                         .addTextPara("page", String.valueOf(pageIndex))
                         .post();

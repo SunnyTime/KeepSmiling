@@ -1,4 +1,4 @@
-package com.du.keepsmiling.fragment.tabhome.jokes;
+package com.du.keepsmiling.fragment.tabhome.videos;
 
 import com.du.keepsmiling.bean.JokesRecycleBean;
 
@@ -11,7 +11,7 @@ import com.du.keepsmiling.bean.JokesRecycleBean;
  * Copyright (c) 2017, www.leadfund.com.cn All Rights Reserved.
  * 上海利得金融科技集团版权所有.
  */
-public interface JokesContract {
+public interface VideosContract {
     interface View {
         /**
          * 下发的数据
