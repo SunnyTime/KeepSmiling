@@ -5,6 +5,7 @@ import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -52,6 +53,7 @@ public abstract class FragmentStateAdapter extends ViewSwapperAdapter {
     private ArrayList<Fragment.SavedState> savedState = new ArrayList<Fragment.SavedState>();
     private ArrayList<Fragment> fragments = new ArrayList<Fragment>();
     private Fragment currentPrimaryItem = null;
+    private Fragment currentFragment;
 
     public FragmentStateAdapter(FragmentManager fm) {
         fragmentManager = fm;
@@ -73,9 +75,11 @@ public abstract class FragmentStateAdapter extends ViewSwapperAdapter {
         // from its saved state, where the fragment manager has already
         // taken care of restoring the fragments we previously had instantiated.
         if (fragments.size() > position) {
-            Fragment f = fragments.get(position);
-            if (f != null) {
-                return f;
+            currentFragment = fragments.get(position);
+            if (currentFragment != null) {
+                hideFragments(currentTransaction);
+                currentTransaction.show(currentFragment);
+                return currentFragment;
             }
         }
         if (currentTransaction == null) {
@@ -93,9 +97,23 @@ public abstract class FragmentStateAdapter extends ViewSwapperAdapter {
         }
         fragment.setMenuVisibility(true);
         fragment.setUserVisibleHint(true);
+
+        if(!fragments.contains(fragment)) {
+            currentTransaction.add(container.getId(), fragment);
+        }
+
         fragments.set(position, fragment);
-        currentTransaction.add(container.getId(), fragment);
         return fragment;
+    }
+
+    private void hideFragments(FragmentTransaction transaction) {
+        if (fragments != null && !fragments.isEmpty()) {
+            for (Fragment f : fragments) {
+                if (f != null && !f.isHidden()) {
+                    transaction.hide(f);
+                }
+            }
+        }
     }
 
     @Override
@@ -103,9 +121,14 @@ public abstract class FragmentStateAdapter extends ViewSwapperAdapter {
         if (currentTransaction == null) {
             currentTransaction = fragmentManager.beginTransaction();
         }
-        savedState.clear();
-        fragments.set(position, null);
-        currentTransaction.detach((Fragment) object);
+
+        if(currentFragment == object) {
+            Log.e("dushiguang","------");
+        } else {
+            savedState.clear();
+            currentTransaction.detach((Fragment) object);
+        }
+        //fragments.set(position, null);
     }
 
     @Override
@@ -118,8 +141,8 @@ public abstract class FragmentStateAdapter extends ViewSwapperAdapter {
             savedState.add(null);
         }
         savedState.set(position, fragmentManager.saveFragmentInstanceState(fragment));
-        fragments.set(position, null);
-        currentTransaction.remove(fragment);
+        //fragments.set(position, null);
+        currentTransaction.hide(fragment);
     }
 
     @Override

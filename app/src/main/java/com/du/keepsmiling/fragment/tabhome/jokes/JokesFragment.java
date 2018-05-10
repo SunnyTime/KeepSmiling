@@ -34,7 +34,8 @@ public class JokesFragment extends BaseFragment implements JokesContract.View {
 
     private int mPageIndex = 1;
 
-    public static JokesFragment newInstance(int imageRes) {
+    public static JokesFragment
+    newInstance(int imageRes) {
         JokesFragment imageFragment = new JokesFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_IMAGE_RESOURCE, imageRes);
@@ -59,15 +60,19 @@ public class JokesFragment extends BaseFragment implements JokesContract.View {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        mPresenter = new JokesPresenter(this);
-        mPresenter.reqData(mPageIndex, "");
         mAdapter = new JokesRecycleAdapter(this.getContext());
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(OrientationHelper.VERTICAL);
         viewRecycler.setLayoutManager(layoutManager);
         viewRecycler.setAdapter(mAdapter);
         mLayoutRefresh.setOnRefreshListener(listener);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mPresenter = new JokesPresenter(this);
+        mPresenter.reqData(mPageIndex, "");
     }
 
     @Override

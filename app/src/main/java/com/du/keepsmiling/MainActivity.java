@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         BigDecimal number1 = new BigDecimal(a);
         BigDecimal number2 = new BigDecimal("100");
         String val = number1.multiply(number2).toString();
+
         hello.setText(val);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

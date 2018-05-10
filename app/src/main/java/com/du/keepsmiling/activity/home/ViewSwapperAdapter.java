@@ -4,7 +4,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import com.du.keepsmiling.R;
-import com.du.keepsmiling.fragment.tabhome.ImageFragment;
 import com.du.keepsmiling.fragment.tabhome.jokes.JokesFragment;
 import com.du.keepsmiling.fragment.tabhome.videos.VideosFragment;
 
@@ -16,6 +15,10 @@ public class ViewSwapperAdapter extends FragmentStateAdapter {
     private static final int INDEX_RETREAT = 1;
     private static final int INDEX_VALUES = 2;
 
+    private JokesFragment mJokesFragment;
+    private VideosFragment mVideosFragment;
+    private VideosFragment mVideosFragment1;
+
     public ViewSwapperAdapter(FragmentManager fm) {
         super(fm);
     }
@@ -24,13 +27,22 @@ public class ViewSwapperAdapter extends FragmentStateAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case INDEX_BUFFER:
-                return JokesFragment.newInstance(R.mipmap.icon_my_center);
+                if (mJokesFragment == null) {
+                    mJokesFragment = JokesFragment.newInstance(R.mipmap.icon_my_center);
+                }
+                return mJokesFragment;
             case INDEX_RETREAT:
-                return VideosFragment.newInstance(R.mipmap.icon_video);
+                if (mVideosFragment == null) {
+                    mVideosFragment = VideosFragment.newInstance(R.mipmap.icon_video);
+                }
+                return mVideosFragment;
             case INDEX_VALUES:
-                return ImageFragment.newInstance(R.mipmap.icon_jokes);
+                if (mVideosFragment1 == null) {
+                    mVideosFragment1 = mVideosFragment.newInstance(R.mipmap.icon_jokes);
+                }
+                return mVideosFragment1;
         }
-        return null;
+        return mJokesFragment = JokesFragment.newInstance(R.mipmap.icon_my_center);
     }
 
     @Override
