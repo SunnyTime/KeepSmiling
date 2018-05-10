@@ -54,6 +54,11 @@ dependencies {
     implementation('cn.bmob.android:bmob-sdk:3.5.5') {
         exclude module: 'rxjava'
     }
+
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+
     //compile 'com.github.xiaoyanger0825:NiceVieoPlayer:v2.2'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation project(path: ':widget')

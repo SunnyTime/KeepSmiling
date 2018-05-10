@@ -6,6 +6,7 @@ import com.du.keepsmiling.common.config.ClientInfo;
 import com.du.logger.AndroidLogAdapter;
 import com.du.logger.Logger;
 import com.du.logger.PrettyFormatStrategy;
+import com.squareup.leakcanary.LeakCanary;
 
 /**
  * ClassName: annerViewLayout
@@ -25,6 +26,13 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+
+        //初始化LeakCanary
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return;
+        }
+        LeakCanary.install(this);
+
         initLog();
         //initBmob();
     }

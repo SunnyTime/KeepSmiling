@@ -5,7 +5,6 @@ import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -122,9 +121,7 @@ public abstract class FragmentStateAdapter extends ViewSwapperAdapter {
             currentTransaction = fragmentManager.beginTransaction();
         }
 
-        if(currentFragment == object) {
-            Log.e("dushiguang","------");
-        } else {
+        if(currentFragment != object) {
             savedState.clear();
             currentTransaction.detach((Fragment) object);
         }
