@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import com.du.keepsmiling.R;
+import com.du.keepsmiling.fragment.tabhome.images.ImagesFragment;
 import com.du.keepsmiling.fragment.tabhome.jokes.JokesFragment;
 import com.du.keepsmiling.fragment.tabhome.videos.VideosFragment;
 
@@ -17,7 +18,7 @@ public class ViewSwapperAdapter extends FragmentStateAdapter {
 
     private JokesFragment mJokesFragment;
     private VideosFragment mVideosFragment;
-    private VideosFragment mVideosFragment1;
+    private ImagesFragment mImagesFragment;
 
     public ViewSwapperAdapter(FragmentManager fm) {
         super(fm);
@@ -37,10 +38,10 @@ public class ViewSwapperAdapter extends FragmentStateAdapter {
                 }
                 return mVideosFragment;
             case INDEX_VALUES:
-                if (mVideosFragment1 == null) {
-                    mVideosFragment1 = mVideosFragment.newInstance(R.mipmap.icon_jokes);
+                if (mImagesFragment == null) {
+                    mImagesFragment = ImagesFragment.newInstance(R.mipmap.icon_jokes);
                 }
-                return mVideosFragment1;
+                return mImagesFragment;
         }
         return mJokesFragment = JokesFragment.newInstance(R.mipmap.icon_my_center);
     }

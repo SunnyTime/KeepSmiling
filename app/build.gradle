@@ -66,4 +66,5 @@ dependencies {
     implementation project(path: ':baselibrary')
     implementation project(path: ':nicevideoplayer')
     implementation files('libs/showapi_sdk.jar')
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.12'
 }

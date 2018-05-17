@@ -98,7 +98,7 @@ public class JokesFragment extends BaseFragment implements JokesContract.View {
         @Override
         public void onLoadMore(TwinklingRefreshLayout refreshLayout) {
             super.onLoadMore(refreshLayout);
-            mPresenter.reqData(mPageIndex++, "");
+            mPresenter.reqData(++mPageIndex, "");
         }
     };
 }

@@ -1,4 +1,4 @@
-package com.du.keepsmiling.fragment.tabhome.videos;
+package com.du.keepsmiling.fragment.tabhome.images;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,8 +12,6 @@ import android.view.ViewGroup;
 import com.du.keepsmiling.R;
 import com.du.keepsmiling.base.BaseFragment;
 import com.du.keepsmiling.bean.JokesRecycleBean;
-import com.xiao.nicevideoplayer.NiceVideoPlayer;
-import com.xiao.nicevideoplayer.NiceVideoPlayerManager;
 
 import app.demo.widget.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
 import app.demo.widget.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
@@ -22,7 +20,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 
-public class VideosFragment extends BaseFragment implements VideosContract.View {
+public class ImagesFragment extends BaseFragment implements ImagesContract.View {
     @BindView(R.id.layout_refresh)
     TwinklingRefreshLayout mLayoutRefresh;
     @BindView(R.id.view_recycler)
@@ -31,13 +29,14 @@ public class VideosFragment extends BaseFragment implements VideosContract.View 
     private static String ARG_IMAGE_RESOURCE = "ARG_IMAGE_RESOURCE";
     private Unbinder mUnbinder;
 
-    private VideosPresenter mPresenter;
-    private VideosRecycleAdapter mAdapter;
+    private ImagesPresenter mPresenter;
+    private ImagesRecycleAdapter mAdapter;
 
     private int mPageIndex = 1;
 
-    public static VideosFragment newInstance(int imageRes) {
-        VideosFragment imageFragment = new VideosFragment();
+    public static ImagesFragment
+    newInstance(int imageRes) {
+        ImagesFragment imageFragment = new ImagesFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_IMAGE_RESOURCE, imageRes);
         imageFragment.setArguments(bundle);
@@ -61,25 +60,19 @@ public class VideosFragment extends BaseFragment implements VideosContract.View 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        mPresenter = new VideosPresenter(this);
-        mPresenter.reqData(mPageIndex, "");
-        mAdapter = new VideosRecycleAdapter(this.getContext());
+        mAdapter = new ImagesRecycleAdapter(this.getContext(), getActivity());
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(OrientationHelper.VERTICAL);
         viewRecycler.setLayoutManager(layoutManager);
         viewRecycler.setAdapter(mAdapter);
         mLayoutRefresh.setOnRefreshListener(listener);
+    }
 
-        viewRecycler.setRecyclerListener(new RecyclerView.RecyclerListener() {
-            @Override
-            public void onViewRecycled(RecyclerView.ViewHolder holder) {
-                NiceVideoPlayer niceVideoPlayer = ((VideosRecycleHolder) holder).viewNiceVideoPlayer;
-                if (niceVideoPlayer == NiceVideoPlayerManager.instance().getCurrentNiceVideoPlayer()) {
-                    NiceVideoPlayerManager.instance().releaseNiceVideoPlayer();
-                }
-            }
-        });
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mPresenter = new ImagesPresenter(this);
+        mPresenter.reqData(mPageIndex, "");
     }
 
     @Override
@@ -88,12 +81,6 @@ public class VideosFragment extends BaseFragment implements VideosContract.View 
         mAdapter.notifyDataSetChanged();
         mLayoutRefresh.finishLoadmore();
         mLayoutRefresh.finishRefreshing();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        NiceVideoPlayerManager.instance().releaseNiceVideoPlayer();
     }
 
     //==============================================================================================

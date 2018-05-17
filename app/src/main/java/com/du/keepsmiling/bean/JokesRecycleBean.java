@@ -97,6 +97,7 @@ public class JokesRecycleBean extends BaseBean {
         String create_time;
         String _id;
         String video_uri;
+        String cdn_img;
 
         public String getText() {
             return text;
@@ -232,6 +233,14 @@ public class JokesRecycleBean extends BaseBean {
 
         public void setVideo_uri(String video_uri) {
             this.video_uri = video_uri;
+        }
+
+        public String getCdn_img() {
+            return cdn_img;
+        }
+
+        public void setCdn_img(String cdn_img) {
+            this.cdn_img = cdn_img;
         }
     }
 }
