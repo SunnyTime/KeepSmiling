@@ -1,12 +1,15 @@
 package com.du.keepsmiling.base;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
 
 import com.du.keepsmiling.common.config.ClientInfo;
 import com.du.logger.AndroidLogAdapter;
 import com.du.logger.Logger;
 import com.du.logger.PrettyFormatStrategy;
 import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 
 /**
  * ClassName: annerViewLayout
@@ -17,6 +20,7 @@ import com.squareup.leakcanary.LeakCanary;
  */
 public class BaseApplication extends Application {
     private static BaseApplication instance;
+    private RefWatcher mRefWatcher;
 
     public static BaseApplication getInstance() {
         return instance;
@@ -26,13 +30,8 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-
         //初始化LeakCanary
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            return;
-        }
-        LeakCanary.install(this);
-
+        mRefWatcher = ClientInfo.isApkDebugAble(getApplicationContext()) ? LeakCanary.install(this) : RefWatcher.DISABLED;
         initLog();
         //initBmob();
     }
@@ -56,7 +55,22 @@ public class BaseApplication extends Application {
                 return ClientInfo.isApkDebugAble(getApplicationContext());
             }
         });
+    }
 
+    public static RefWatcher getRefWatcher() {
+        return getInstance().mRefWatcher;
+    }
 
+    /**
+     * 判断当前应用是否是debug状态
+     */
+
+    public static boolean isApkInDebug(Context context) {
+        try {
+            ApplicationInfo info = context.getApplicationInfo();
+            return (info.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

@@ -85,6 +85,7 @@ public abstract class FragmentStateAdapter extends ViewSwapperAdapter {
             currentTransaction = fragmentManager.beginTransaction();
         }
         Fragment fragment = getItem(position);
+        currentFragment = fragment;
         if (savedState.size() > position) {
             Fragment.SavedState fss = savedState.get(position);
             if (fss != null) {

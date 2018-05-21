@@ -80,6 +80,21 @@ public class VideosFragment extends BaseFragment implements VideosContract.View 
                 }
             }
         });
+
+        viewRecycler.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
+            @Override
+            public void onChildViewAttachedToWindow(View view) {
+
+            }
+
+            @Override
+            public void onChildViewDetachedFromWindow(View view) {
+                NiceVideoPlayer niceVideoPlayer = (NiceVideoPlayer) view.findViewById(R.id.view_video_player);
+                if (niceVideoPlayer != null) {
+                    niceVideoPlayer.release();
+                }
+            }
+        });
     }
 
     @Override

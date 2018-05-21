@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,14 +11,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.du.keepsmiling.activity.home.MainHomeActivity;
+import com.du.keepsmiling.base.BaseActivity;
 import com.du.logger.Logger;
 
 import java.math.BigDecimal;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
-
-    private TextView hello;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

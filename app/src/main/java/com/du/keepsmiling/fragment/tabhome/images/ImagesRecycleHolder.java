@@ -22,6 +22,7 @@ public class ImagesRecycleHolder extends ViewHolder {
     TextView viewName;
     TextView viewTime;
     TextView viewProgress;
+    TextView viewContent;
 
     GifImageView viewGif;
 
@@ -35,6 +36,7 @@ public class ImagesRecycleHolder extends ViewHolder {
         viewImage = (ImageView) itemView.findViewById(R.id.view_image);
         viewName = (TextView) itemView.findViewById(R.id.view_name);
         viewTime = (TextView) itemView.findViewById(R.id.view_time);
+        viewContent = (TextView) itemView.findViewById(R.id.view_content);
         viewGif = (GifImageView) itemView.findViewById(R.id.view_gif);
         viewLove = (AppCompatCheckBox) itemView.findViewById(R.id.view_love);
         viewHate = (AppCompatCheckBox) itemView.findViewById(R.id.view_hate);

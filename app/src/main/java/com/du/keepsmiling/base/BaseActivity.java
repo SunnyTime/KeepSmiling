@@ -10,4 +10,10 @@ import android.support.v7.app.AppCompatActivity;
  * version 0.1
  */
 public class BaseActivity extends AppCompatActivity {
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        BaseApplication.getRefWatcher().watch(this);
+    }
 }

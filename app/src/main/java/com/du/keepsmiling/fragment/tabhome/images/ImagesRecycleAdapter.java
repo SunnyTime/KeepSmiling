@@ -87,9 +87,9 @@ public class ImagesRecycleAdapter extends RecyclerView.Adapter<RecyclerView.View
             PicassoUtil.load(bean.get(p).getProfile_image(), holder.viewImage);
             holder.viewName.setText(bean.get(p).getName());
             holder.viewTime.setText(bean.get(p).getCreate_time());
-            holder.viewGif.setTag(bean.get(p).getCdn_img());
-
+            holder.viewContent.setText(bean.get(p).getText());
             int length = bean.get(p).getCdn_img().length();
+
             String str = "*";
             if (length >= 3) {
                 str = bean.get(p).getCdn_img().substring(length - 3, length);
