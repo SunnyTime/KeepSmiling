@@ -82,6 +82,8 @@ public class JokesRecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             holder.viewName.setText(bean.get(p).getName());
             holder.viewTime.setText(bean.get(p).getCreate_time());
             holder.viewContent.setText(bean.get(p).getText());
+            holder.viewLove.setText(bean.get(p).getLove());
+            holder.viewHate.setText(bean.get(p).getHate());
         }
     }
 

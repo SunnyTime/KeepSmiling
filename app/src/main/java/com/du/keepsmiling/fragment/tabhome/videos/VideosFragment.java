@@ -29,6 +29,7 @@ public class VideosFragment extends BaseFragment implements VideosContract.View 
     RecyclerView viewRecycler;
 
     private static String ARG_IMAGE_RESOURCE = "ARG_IMAGE_RESOURCE";
+
     private Unbinder mUnbinder;
 
     private VideosPresenter mPresenter;
@@ -109,6 +110,12 @@ public class VideosFragment extends BaseFragment implements VideosContract.View 
     public void onStop() {
         super.onStop();
         NiceVideoPlayerManager.instance().releaseNiceVideoPlayer();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mUnbinder.unbind();
     }
 
     //==============================================================================================

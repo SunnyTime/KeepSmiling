@@ -7,10 +7,13 @@ import com.du.keepsmiling.utils.GsonUtil;
 import com.du.logger.Logger;
 import com.show.api.ShowApiRequest;
 
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * ClassName: annerViewLayout
@@ -33,24 +36,25 @@ public class JokesPresenter extends BasePresenter implements JokesContract.Prese
     @Override
     public void reqData(final int pageIndex, final String keyWords) {
         //创建一个被观察者(发布者)
-        Observable<String> observable = Observable.create(new Observable.OnSubscribe<String>() {
+        Observable<String> observable = Observable.create(new ObservableOnSubscribe<String>() {
             @Override
-            public void call(Subscriber<? super String> subscriber) {
-                String res=new ShowApiRequest( "http://route.showapi.com/255-1", appid, secret)
+            public void subscribe(ObservableEmitter<String> e) throws Exception {
+                String res = new ShowApiRequest("http://route.showapi.com/255-1", appid, secret)
                         .addTextPara("type", "29")
                         .addTextPara("title", keyWords)
                         .addTextPara("page", String.valueOf(pageIndex))
                         .post();
-                subscriber.onNext(res);
-                subscriber.onCompleted();
+                e.onNext(res);
+                e.onComplete();
             }
         });
 
+
         //创建一个观察者
-        Subscriber<String> subscriber = new Subscriber<String>() {
+        Observer<String> observer = new Observer<String>() {
             @Override
-            public void onCompleted() {
-                Logger.t(TAG).e("onCompleted..:");
+            public void onSubscribe(Disposable d) {
+
             }
 
             @Override
@@ -59,13 +63,18 @@ public class JokesPresenter extends BasePresenter implements JokesContract.Prese
             }
 
             @Override
+            public void onComplete() {
+                Logger.t(TAG).e("onCompleted..:");
+            }
+
+            @Override
             public void onNext(String str) {
                 BaseBean bean = GsonUtil.fromJson(str, BaseBean.class);
-                if("0".equals(bean.getShowapi_res_code())) {
-                    String data = GsonUtil.fromJsonString(str,"showapi_res_body");
-                    view.rtnData(GsonUtil.fromJson(data,JokesRecycleBean.class));
+                if ("0".equals(bean.getShowapi_res_code())) {
+                    String data = GsonUtil.fromJsonString(str, "showapi_res_body");
+                    view.rtnData(GsonUtil.fromJson(data, JokesRecycleBean.class));
                 }
-                Logger.t(TAG).e( "onNext.. integer:" + str);
+                Logger.t(TAG).e("onNext.. integer:" + str);
             }
         };
 
@@ -73,6 +82,6 @@ public class JokesPresenter extends BasePresenter implements JokesContract.Prese
         //设置观察者和发布者代码所要运行的线程后注册观察者
         observable.subscribeOn(Schedulers.newThread())//在当前线程执行subscribe()方法
                 .observeOn(AndroidSchedulers.mainThread())//在UI线程执行观察者的方法
-                .subscribe(subscriber);
+                .subscribe(observer);
     }
 }

@@ -3,9 +3,7 @@ package com.du.keepsmiling.base;
 import android.support.v4.app.Fragment;
 import android.widget.Toast;
 
-import com.du.keepsmiling.common.key.keys;
-
-import cn.bmob.v3.Bmob;
+//import cn.bmob.v3.Bmob;
 
 /**
  * ClassName: annerViewLayout
@@ -22,6 +20,6 @@ public class BaseFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        Bmob.initialize(getActivity().getApplicationContext(), keys.BmobApplicationID);
+        //Bmob.initialize(getActivity().getApplicationContext(), keys.BmobApplicationID);
     }
 }

@@ -83,6 +83,12 @@ public class JokesFragment extends BaseFragment implements JokesContract.View {
         mLayoutRefresh.finishRefreshing();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mUnbinder.unbind();
+    }
+
     //==============================================================================================
 
     RefreshListenerAdapter listener = new RefreshListenerAdapter() {

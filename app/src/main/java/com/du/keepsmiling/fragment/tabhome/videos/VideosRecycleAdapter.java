@@ -90,6 +90,9 @@ public class VideosRecycleAdapter extends RecyclerView.Adapter<RecyclerView.View
             holder.viewName.setText(bean.get(p).getName());
             holder.viewTime.setText(bean.get(p).getCreate_time());
             holder.viewContent.setText(bean.get(p).getText());
+
+            holder.viewLove.setText(bean.get(p).getLove());
+            holder.viewHate.setText(bean.get(p).getHate());
         }
     }
 

@@ -9,10 +9,14 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        multiDexEnabled true
         ndk {
             abiFilters 'armeabi', 'armeabi-v7a', 'x86'
         }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
     }
 
     sourceSets {
@@ -42,6 +46,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     implementation 'com.android.support:design:27.1.1'
@@ -51,9 +56,18 @@ dependencies {
     implementation 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     //bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
-    implementation('cn.bmob.android:bmob-sdk:3.5.5') {
-        exclude module: 'rxjava'
-    }
+/*    provided('cn.bmob.android:bmob-sdk:3.5.5') {
+        //exclude module: 'rxjava'
+    }*/
+
+    //RxJava的依赖包
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.0'
+    //RxAndroid的依赖包
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
@@ -64,6 +78,7 @@ dependencies {
     implementation project(path: ':widget')
     implementation project(path: ':logutil')
     implementation project(path: ':baselibrary')
+    //implementation project(path: ':rxnet')
     implementation project(path: ':nicevideoplayer')
     implementation files('libs/showapi_sdk.jar')
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.12'

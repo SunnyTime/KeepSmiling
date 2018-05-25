@@ -83,6 +83,12 @@ public class ImagesFragment extends BaseFragment implements ImagesContract.View 
         mLayoutRefresh.finishRefreshing();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mUnbinder.unbind();
+    }
+
     //==============================================================================================
 
     RefreshListenerAdapter listener = new RefreshListenerAdapter() {
