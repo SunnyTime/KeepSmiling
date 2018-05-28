@@ -1,10 +1,11 @@
 package com.du.keepsmiling.activity.home;
 
 import android.os.Bundle;
+import android.support.v4.util.ArrayMap;
 
 import com.du.keepsmiling.R;
 import com.du.keepsmiling.base.BaseActivity;
-import com.du.keepsmiling.net.Request;
+import com.du.keepsmiling.bean.RespBean1;
 import com.du.logger.Logger;
 
 import java.io.BufferedReader;
@@ -13,12 +14,16 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Map;
 
 import app.demo.widget.adaptablebottomnavigation.view.AdaptableBottomNavigationView;
 import app.demo.widget.adaptablebottomnavigation.view.ViewSwapper;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import keepsmiling.du.com.rxnet.request.GetRequest;
+import keepsmiling.du.com.rxnet.HttpWorker;
+import keepsmiling.du.com.rxnet.response.RCallBack;
 
 /**
  * ClassName: annerViewLayout
@@ -94,8 +99,35 @@ public class MainHomeActivity extends BaseActivity {
     }
 
     private void request() {
-        Request r = new Request();
-        r.request();
+        GetRequest r = new GetRequest("HelloForm");
+        r.request(new RCallBack<RespBean1>() {
+            @Override
+            public void onSuccess(RespBean1 data) {
+                Logger.i("String ======" + data.getFixInvestPartUrl());
+            }
+
+            @Override
+            public void onFail(int errCode, String errMsg) {
+                Logger.e(errMsg);
+            }
+        });
+
+        Map<String, String> map = new ArrayMap<>();
+        map.put("name","name");
+        map.put("password","111111");
+        HttpWorker.GET("HelloForm")
+                .addParams(map)
+                .request(new RCallBack<RespBean1>() {
+                    @Override
+                    public void onSuccess(RespBean1 data) {
+                        Logger.i("String ======" + data.getFixInvestPartUrl());
+                    }
+
+                    @Override
+                    public void onFail(int errCode, String errMsg) {
+                        Logger.e(errMsg);
+                    }
+                });
     }
 
     @Override

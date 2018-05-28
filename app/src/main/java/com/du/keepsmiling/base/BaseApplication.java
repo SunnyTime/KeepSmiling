@@ -9,8 +9,14 @@ import com.du.keepsmiling.common.config.ClientInfo;
 import com.du.logger.AndroidLogAdapter;
 import com.du.logger.Logger;
 import com.du.logger.PrettyFormatStrategy;
+import com.google.gson.Gson;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
+
+import keepsmiling.du.com.rxnet.HttpWorker;
+import keepsmiling.du.com.rxnet.interceptor.HttpLogInterceptor;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * ClassName: annerViewLayout
@@ -35,6 +41,17 @@ public class BaseApplication extends Application {
         mRefWatcher = ClientInfo.isApkDebugAble(getApplicationContext()) ? LeakCanary.install(this) : RefWatcher.DISABLED;
         initLog();
         //initBmob();
+        initNet();
+    }
+
+    private void initNet() {
+        HttpWorker.init(this);
+        HttpWorker.CONFIG()
+                .baseUrl("http://10.1.30.1:8080/TomcatTest/")
+                .callAdapterFactory(RxJava2CallAdapterFactory.create())
+                .converterFactory(GsonConverterFactory.create(new Gson()))
+                .interceptor(new HttpLogInterceptor().setLevel(HttpLogInterceptor.Level.BODY));
+
     }
 
     /**
