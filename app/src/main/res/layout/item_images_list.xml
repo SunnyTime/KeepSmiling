@@ -50,8 +50,7 @@
         android:layout_centerVertical="true"
         android:gravity="center_vertical"
         android:text="0%"
-        android:textColor="@color/color_7CB342"
-        android:visibility="gone" />
+        android:textColor="@color/color_7CB342" />
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/view_gif"

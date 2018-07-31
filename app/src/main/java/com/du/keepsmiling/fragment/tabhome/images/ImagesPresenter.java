@@ -14,6 +14,7 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+
 /**
  * ClassName: annerViewLayout
  * Function: Banner
@@ -38,7 +39,7 @@ public class ImagesPresenter extends BasePresenter implements ImagesContract.Pre
         Observable<String> observable = Observable.create(new ObservableOnSubscribe<String>() {
             @Override
             public void subscribe(ObservableEmitter<String> e) throws Exception {
-                String res=new ShowApiRequest( "http://route.showapi.com/255-1", appid, secret)
+                String res = new ShowApiRequest("http://route.showapi.com/255-1", appid, secret)
                         .addTextPara("type", "10")
                         .addTextPara("title", keyWords)
                         .addTextPara("page", String.valueOf(pageIndex))
@@ -72,7 +73,8 @@ public class ImagesPresenter extends BasePresenter implements ImagesContract.Pre
                     String data = GsonUtil.fromJsonString(str, "showapi_res_body");
                     view.rtnData(GsonUtil.fromJson(data, JokesRecycleBean.class));
                 }
-                Logger.t(TAG).e("onNext.. integer:" + str);
+                Logger.t(TAG).i("onNext.. integer:" + str);
+                Logger.t(TAG).json(str);
             }
         };
 

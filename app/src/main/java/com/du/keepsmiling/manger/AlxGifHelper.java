@@ -37,7 +37,7 @@ import pl.droidsonroids.gif.GifImageView;
  */
 public class AlxGifHelper {
     public static class ProgressViews {
-        public ProgressViews(WeakReference<GifImageView> gifImageViewWeakReference,  WeakReference<TextView> textViewWeakReference, int displayWidth) {
+        public ProgressViews(WeakReference<GifImageView> gifImageViewWeakReference, WeakReference<TextView> textViewWeakReference, int displayWidth) {
             this.gifImageViewWeakReference = gifImageViewWeakReference;
             this.textViewWeakReference = textViewWeakReference;
             this.displayWidth = displayWidth;
@@ -77,7 +77,7 @@ public class AlxGifHelper {
         if (gifView.getId() != R.id.view_gif)
             gifView.setImageResource(R.mipmap.ic_launcher);//设置没有下载完成前的默认图片
         if (memoryCache != null && memoryCache.get(url) != null) {//如果以前有别的imageView加载过
-            Logger.t("AlexGIF").i( "以前有别的ImageView申请加载过该gif" + url);
+            Logger.t("AlexGIF").i("以前有别的ImageView申请加载过该gif" + url);
             //可以借用以前的下载进度，不需要新建一个下载线程了
             memoryCache.get(url).add(new ProgressViews(imageViewWait, textViewWait, displayWidth));
             return;
@@ -92,7 +92,7 @@ public class AlxGifHelper {
             @Override
             public void onStart() {
                 Logger.t("AlexGIF").i("下载GIF开始");
-               // ProgressWheel progressBar = progressBarWait.get();
+                //ProgressWheel progressBar = progressBarWait.get();
                 TextView tvProgress = textViewWait.get();
                 /*if(progressBar!=null){
                     progressBar.setVisibility(View.VISIBLE);
@@ -101,9 +101,9 @@ public class AlxGifHelper {
                     tvProgress.setVisibility(View.VISIBLE);
                     tvProgress.setText("1%");
                 }*/
-               /* if(tvProgress==null)return;
+                if(tvProgress==null)return;
                 tvProgress.setVisibility(View.VISIBLE);
-                tvProgress.setText("1%");*/
+                tvProgress.setText("1%");
             }
 
             @Override
@@ -120,10 +120,10 @@ public class AlxGifHelper {
                     if (progressBar != null) {
                         progressBar.setProgress((float) progress / 100f);
                         if (total == -1) progressBar.setProgress(20);//如果获取不到大小，就让进度条一直转
-                    }
-                    TextView tvProgress = vs.textViewWeakReference.get();
-                    if (tvProgress != null) tvProgress.setText(progress + "%");*/
+                    }*/
 
+                    TextView tvProgress = vs.textViewWeakReference.get();
+                    if (tvProgress != null) tvProgress.setText(progress + "%");
                     //显示第一帧直到全部下载完之后开始动画
                     getFirstPicOfGIF(new File(cacheFile.getAbsolutePath() + ".tmp"), vs.gifImageViewWeakReference.get());
                 }
@@ -136,7 +136,7 @@ public class AlxGifHelper {
                 File downloadFile = new File(path);
                 File renameFile = new File(path.substring(0, path.length() - 4));
                 if (path.endsWith(".tmp")) downloadFile.renameTo(renameFile);//将.tmp后缀去掉
-                Logger.t("AlexGIF").i( "下载GIf成功,文件路径是" + path + " 重命名之后是" + renameFile.getAbsolutePath());
+                Logger.t("AlexGIF").i("下载GIf成功,文件路径是" + path + " 重命名之后是" + renameFile.getAbsolutePath());
                 if (memoryCache == null) return;
                 ArrayList<ProgressViews> viewArr = memoryCache.get(url);
                 if (viewArr == null || viewArr.size() == 0) return;
@@ -146,10 +146,10 @@ public class AlxGifHelper {
                     if (gifImageView != null)
                         displayImage(renameFile, gifImageView, ws.displayWidth);
                     //修改进度条
-                    /*TextView tvProgress = ws.textViewWeakReference.get();
-                    ProgressWheel progressBar = ws.progressWheelWeakReference.get();
-                    if(progressBar!=null)progressBar.setVisibility(View.GONE);
-                    if(tvProgress!=null)tvProgress.setVisibility(View.GONE);*/
+                    TextView tvProgress = ws.textViewWeakReference.get();
+                    /*ProgressWheel progressBar = ws.progressWheelWeakReference.get();
+                    if(progressBar!=null)progressBar.setVisibility(View.GONE);*/
+                    if(tvProgress!=null)tvProgress.setVisibility(View.GONE);
                 }
                 Logger.t("AlexGIF").i(url + "的imageView已经全部加载完毕，共有" + viewArr.size() + "个");
                 memoryCache.remove(url);//这个url的全部关联imageView都已经显示完毕，清除缓存记录
@@ -160,8 +160,8 @@ public class AlxGifHelper {
                 Logger.t("Alex").i("下载gif图片出现异常", e);
                 TextView tvProgress = textViewWait.get();
                 /*ProgressWheel progressBar = progressBarWait.get();
-                if (progressBar != null) progressBar.setVisibility(View.GONE);
-                if (tvProgress != null) tvProgress.setText("image download failed");*/
+                if (progressBar != null) progressBar.setVisibility(View.GONE);*/
+                if (tvProgress != null) tvProgress.setText("image download failed");
                 if (memoryCache != null) memoryCache.remove(url);//下载失败移除所有的弱引用
             }
         });
@@ -176,32 +176,32 @@ public class AlxGifHelper {
      */
     public static boolean displayImage(File localFile, GifImageView gifImageView, int displayWidth) {
         if (localFile == null || gifImageView == null) return false;
-        Logger.t("AlexGIF").i( "准备加载gif" + localFile.getAbsolutePath() + "显示宽度为" + displayWidth);
+        Logger.t("AlexGIF").i("准备加载gif" + localFile.getAbsolutePath() + "显示宽度为" + displayWidth);
         GifDrawable gifFrom;
         try {
             gifFrom = new GifDrawable(localFile);
             int raw_height = gifFrom.getIntrinsicHeight();
             int raw_width = gifFrom.getIntrinsicWidth();
-            Logger.t("AlexGIF").i( "图片原始height是" + raw_height + "  图片原始宽是:" + raw_width);
+            Logger.t("AlexGIF").i("图片原始height是" + raw_height + "  图片原始宽是:" + raw_width);
             if (gifImageView.getScaleType() != ImageView.ScaleType.CENTER_CROP && gifImageView.getScaleType() != ImageView.ScaleType.FIT_XY) {
                 //如果大小应该自适应的话进入该方法（也就是wrap content），不然高度不会自动变化
                 if (raw_width < 1 || raw_height < 1) return false;
                 int imageViewWidth = displayWidth;
                 if (imageViewWidth < 1) imageViewWidth = raw_width;//当传来的控件宽度不大对的时候，就显示gif的原始大小
                 int imageViewHeight = imageViewWidth * raw_height / raw_width;
-                Logger.t("AlexGIF").i( "缩放完的gif是" + imageViewWidth + " X " + imageViewHeight);
+                Logger.t("AlexGIF").i("缩放完的gif是" + imageViewWidth + " X " + imageViewHeight);
                 ViewGroup.LayoutParams params = gifImageView.getLayoutParams();
                 if (params != null) {
                     params.height = imageViewHeight;
                     params.width = imageViewWidth;
                 }
             } else {
-                Logger.t("AlexGIF").i( "按照固定大小进行显示");
+                Logger.t("AlexGIF").i("按照固定大小进行显示");
             }
             gifImageView.setImageDrawable(gifFrom);
             return true;
         } catch (IOException e) {
-            Logger.t("AlexGIF").i( "显示gif出现异常", e);
+            Logger.t("AlexGIF").i("显示gif出现异常", e);
             return false;
         }
     }
@@ -229,7 +229,7 @@ public class AlxGifHelper {
             if (sb.length() < 24) return sb.toString();
             return sb.toString().substring(8, 24);//为了提高磁盘的查找文件速度，让文件名为16位
         } catch (NoSuchAlgorithmException e) {
-            Logger.t("Alex").i( "MD5加密失败");
+            Logger.t("Alex").i("MD5加密失败");
             return "no_image.gif";
         }
     }
@@ -259,7 +259,13 @@ public class AlxGifHelper {
 
             @Override
             protected Void doInBackground(Void... params) {
-                task.onStart();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        task.onStart();
+                    }
+                });
+
                 downloadToStream(uri, targetFile, task, handler);
                 return null;
             }
@@ -302,7 +308,7 @@ public class AlxGifHelper {
                     result = result < System.currentTimeMillis() ? System.currentTimeMillis() + 40000 : result;
                     fileLen = httpURLConnection.getContentLength();//这里通过http报文的header Content-Length来获取gif的总大小，需要服务器提前把header写好
                 } else {
-                    Logger.t("Alex").e( "downloadToStream -> responseCode ==> " + responseCode);
+                    Logger.t("Alex").e("downloadToStream -> responseCode ==> " + responseCode);
                     return -1;
                 }
             } catch (final Exception ex) {
@@ -374,7 +380,7 @@ public class AlxGifHelper {
             GifDrawable gifFromFile = new GifDrawable(gifFile);
             boolean canSeekForward = gifFromFile.canSeekForward();
             if (!canSeekForward) return;
-            Logger.t("AlexGIF").i( "是否能显示第一帧图片" + canSeekForward);
+            Logger.t("AlexGIF").i("是否能显示第一帧图片" + canSeekForward);
             //下面是一些其他有用的信息
 //            int frames = gifFromFile.getNumberOfFrames();
 //            JLogUtils.i("AlexGIF","已经下载完多少帧"+frames);
@@ -387,7 +393,7 @@ public class AlxGifHelper {
             imageView.setImageDrawable(gifFromFile);
             imageView.setTag(R.style.AppTheme, 1);//标记该imageView已经显示过第一帧了
         } catch (IOException e) {
-            Logger.t("AlexGIF").i( "获取gif信息出现异常" + e);
+            Logger.t("AlexGIF").i("获取gif信息出现异常" + e);
         }
     }
 }

@@ -90,15 +90,15 @@ public class ImagesRecycleAdapter extends RecyclerView.Adapter<RecyclerView.View
             holder.viewContent.setText(bean.get(p).getText());
             holder.viewLove.setText(bean.get(p).getLove());
             holder.viewHate.setText(bean.get(p).getHate());
-            int length = bean.get(p).getCdn_img().length();
+            int length = bean.get(p).getImage0().length();
 
             String str = "*";
             if (length >= 3) {
-                str = bean.get(p).getCdn_img().substring(length - 3, length);
+                str = bean.get(p).getImage0().substring(length - 3, length);
             }
 
             if("gif".equals(str)) {
-                AlxGifHelper.displayImage(bean.get(p).getCdn_img(), holder.viewGif, holder.viewProgress, 0);
+                AlxGifHelper.displayImage(bean.get(p).getImage0(), holder.viewGif, holder.viewProgress, 0);
                 final GifDrawable gifDrawable;
                 try {
                     gifDrawable = (GifDrawable) holder.viewGif.getDrawable();
@@ -113,7 +113,7 @@ public class ImagesRecycleAdapter extends RecyclerView.Adapter<RecyclerView.View
 
                 }
             } else {
-                PicassoUtil.load(bean.get(p).getCdn_img(), holder.viewGif);
+                PicassoUtil.load(bean.get(p).getImage0(), holder.viewGif);
             }
 
             /**

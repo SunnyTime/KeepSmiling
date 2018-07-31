@@ -1,1 +1,1 @@
-include ':app', ':widget', ':rxnet', ':baselibrary', 'logutil', 'nicevideoplayer'
+include ':app', ':widget', ':rxnet', ':baselibrary', ':mannotation', 'logutil', 'nicevideoplayer'
